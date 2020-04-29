@@ -61,6 +61,24 @@ $('button').click(function(){
                 $('.weather').append('<p>Vent : ' + p.current_condition ['wnd_spd'] + 'Km/h, direction ' + p.current_condition ['wnd_dir'] + '</p>');
 
                 $('.weather').append('<p>Pression Barométrique : ' + p.current_condition ['pressure'] + ' hPa</p>');
+
+                $('.weather').after('<div class="nextDay"></div>');
+
+                for(let i=0;i<4; i++){
+                    $('.nextDay').append('<div class="day'+(i+1)+'"></div>');
+
+                    $('.day'+(i+1)).append('<h3>' + p["fcst_day_"+(i+1)]['day_long'] + ' ' + p["fcst_day_"+(i+1)]['date'] + '</h3>');
+
+                    $('.day'+(i+1)).append('<p>'+ p["fcst_day_"+(i+1)]['condition'] + '<img src='+ p["fcst_day_"+(i+1)]["icon"]+'></img></p>');
+
+                    $('.day'+(i+1)).append('<p>Températures : de '+ p["fcst_day_"+(i+1)]['tmin'] + '°C à ' + p["fcst_day_"+(i+1)]['tmax']+'°C</p>');
+                }
+
+                $('.nextDay').children().css({
+                    'border': '1px solid black',
+                    'padding': '20px',
+                    'width': '100%'
+                });
             }
         });
     }
